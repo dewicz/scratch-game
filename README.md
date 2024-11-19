@@ -289,9 +289,9 @@ Rewards breakdown:
 |-------------------------|-----------------------------------|
 | symbol_A                | bet_amount x5                     |
 | symbol_B                | bet_amount x3                     |
-| same_symbol_5_times     | (reward for a specific symbol) x5 |
+| same_symbol_5_times     | (reward for a specific symbol) x2 //original value was 5 but doesn't match config file, assuming it's a typo |
 | same_symbol_3_times     | (reward for a specific symbol) x1 |
-| same_symbols_vertically | (reward for a specific symbol) x2 |
+| same_symbols_vertically | (reward for a specific symbol) x5 //original value was 2 but doesn't match config file, assuming it's a typo |
 | +1000                   | add 1000 extra to final reward    |
 
 Calculations: (bet_amount x reward(symbol_A) x reward(same_symbol_5_times) x reward(same_symbols_vertically)) + (bet_amount x reward(symbol_B) x reward(same_symbol_3_times) x reward(same_symbols_vertically)) (+/x) reward(+1000) = (100 x5 x5 x2) + (100 x3 x1 x2) + 1000 = 5000 + 600 + 1000 = 6600
