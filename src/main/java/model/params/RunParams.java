@@ -20,10 +20,9 @@ public class RunParams {
         populateParams(args, validator);
     }
 
-    private boolean populateParams(String[] args, RunParamsValidator validator) {
+    private void populateParams(String[] args, RunParamsValidator validator) {
         if(args.length != Constants.NUMBER_OF_PARAMS) { // expecting 4 args --config config.json --betting-amount 100
             printInstructions();
-            return false;
         }
         for(int i=0; i<args.length; i++) {
             String arg = args[i];
@@ -43,7 +42,6 @@ public class RunParams {
                     break;
             }
         }
-        return true;
     }
 
     private void printInstructions() {
