@@ -1,4 +1,4 @@
-package model.game;
+package model.config.fields;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import model.enums.ImpactType;

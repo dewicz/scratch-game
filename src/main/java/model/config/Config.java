@@ -1,9 +1,9 @@
 package model.config;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import model.game.Probability;
-import model.game.Symbol;
-import model.game.WinCombination;
+import model.config.fields.Probability;
+import model.config.fields.Symbol;
+import model.config.fields.WinCombination;
 
 import java.util.Map;
 

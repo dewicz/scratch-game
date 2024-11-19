@@ -1,4 +1,4 @@
-package model.game;
+package model.config.fields;
 
 public class Location {
     int row;
