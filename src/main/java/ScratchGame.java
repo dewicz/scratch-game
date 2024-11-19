@@ -1,11 +1,14 @@
 import model.config.Config;
 import model.game.Board;
+import model.matching.Result;
 import model.params.RunParams;
 import service.config.ConfigService;
-import service.game.BoardService;
+import service.game.BoardAnalysisService;
+import service.game.BoardCreationService;
 import util.PrintingHelper;
 
 import java.io.IOException;
+import java.util.List;
 
 public class ScratchGame {
     public static void main(String[] args) {
@@ -22,8 +25,12 @@ public class ScratchGame {
             System.err.println(e.getMessage());
         }
         System.out.println(config);
-        BoardService boardService = new BoardService(config);
-        Board board = boardService.initializeBoard(3,3);
+        BoardCreationService boardCreationService = new BoardCreationService(config);
+        Board board = boardCreationService.initializeBoard(3,3);
         PrintingHelper.printBoard(board);
+        BoardAnalysisService boardAnalysisService = new BoardAnalysisService(config);
+        List<Result> resultList = boardAnalysisService.analyzeBoard(board);
+        double reward = boardAnalysisService.computeReward(runParams.getBettingAmount());
+        System.out.println(reward);
     }
 }

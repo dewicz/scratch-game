@@ -7,16 +7,16 @@ import model.enums.SymbolType;
 public class Symbol {
 
     @JsonProperty("reward_multiplier")
-    private int rewardMultiplier;
+    private double rewardMultiplier;
     private SymbolType type;
     private ImpactType impact;
     private int extra;
 
-    public int getRewardMultiplier() {
+    public double getRewardMultiplier() {
         return rewardMultiplier;
     }
 
-    public void setRewardMultiplier(int rewardMultiplier) {
+    public void setRewardMultiplier(double rewardMultiplier) {
         this.rewardMultiplier = rewardMultiplier;
     }
 

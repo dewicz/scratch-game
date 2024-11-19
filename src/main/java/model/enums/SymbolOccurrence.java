@@ -1,5 +1,5 @@
 package model.enums;
 
-public enum SymbolOccurence {
+public enum SymbolOccurrence {
     SAME_SYMBOLS, LINEAR_SYMBOLS
 }

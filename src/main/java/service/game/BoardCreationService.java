@@ -1,22 +1,19 @@
 package service.game;
 
 import model.config.Config;
-import model.config.fields.CellAllocation;
 import model.config.fields.Probability;
 import model.game.Board;
-import model.config.fields.Symbol;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class BoardService {
+public class BoardCreationService {
 
     private final Config config;
     private final Random random;
 
-    public BoardService(Config config) {
+    public BoardCreationService(Config config) {
         this.config = config;
         random = new Random();
     }
