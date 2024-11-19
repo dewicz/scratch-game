@@ -294,7 +294,7 @@ Rewards breakdown:
 | same_symbols_vertically | (reward for a specific symbol) x5 //original value was 2 but doesn't match config file, assuming it's a typo |
 | +1000                   | add 1000 extra to final reward    |
 
-Calculations: (bet_amount x reward(symbol_A) x reward(same_symbol_5_times) x reward(same_symbols_vertically)) + (bet_amount x reward(symbol_B) x reward(same_symbol_3_times) x reward(same_symbols_vertically)) (+/x) reward(+1000) = (100 x5 x5 x2) + (100 x3 x1 x2) + 1000 = 5000 + 600 + 1000 = 6600
+Calculations: (bet_amount x reward(symbol_A) x reward(same_symbol_5_times) x reward(same_symbols_vertically)) + (bet_amount x reward(symbol_B) x reward(same_symbol_3_times) x reward(same_symbols_vertically)) (+/x) reward(+1000) = (100 x5 x2 x5) + (100 x3 x1 x5) + 1000 = 5000 + 1500 + 1000 = 6600
 
 Examples (with a winning combination [same symbols should be repeated at least 3 / reward x2]):
 
