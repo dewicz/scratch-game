@@ -1,12 +1,11 @@
 import model.config.Config;
-import model.config.fields.Symbol;
-import model.game.Board;
+import model.game.Matrix;
 import model.game.GameResult;
 import model.matching.MatchingResult;
 import model.params.RunParams;
 import service.config.ConfigService;
-import service.game.BoardAnalysisService;
-import service.game.BoardCreationService;
+import service.game.MatrixAnalysisService;
+import service.game.MatrixCreationService;
 import service.game.GameResultService;
 import util.PrintingHelper;
 
@@ -27,18 +26,17 @@ public class ScratchGame {
         catch(IOException e) {
             System.err.println(e.getMessage());
         }
-        System.out.println(config);
-        BoardCreationService boardCreationService = new BoardCreationService(config);
-        Board board = boardCreationService.initializeBoard(3,3);
-        PrintingHelper.printBoard(board);
-        BoardAnalysisService boardAnalysisService = new BoardAnalysisService(config);
-        List<MatchingResult> matchingResultList = boardAnalysisService.analyzeBoard(board);
-        double reward = boardAnalysisService.computeReward(runParams.getBettingAmount());
-        String bonusName = reward == 0 ? "" : boardAnalysisService.findBonus(board);
-        reward = boardAnalysisService.addBonus(reward, bonusName);
+        MatrixCreationService matrixCreationService = new MatrixCreationService(config);
+        Matrix matrix = matrixCreationService.initializeBoard(3,3);
+        PrintingHelper.printBoard(matrix);
+        MatrixAnalysisService matrixAnalysisService = new MatrixAnalysisService(config);
+        List<MatchingResult> matchingResultList = matrixAnalysisService.analyzeBoard(matrix);
+        double reward = matrixAnalysisService.computeReward(runParams.getBettingAmount());
+        String bonusName = reward == 0 ? "" : matrixAnalysisService.findBonus(matrix);
+        reward = matrixAnalysisService.addBonus(reward, bonusName);
         System.out.println((int) reward);
         GameResultService gameResultService = new GameResultService();
-        GameResult gameResult = gameResultService.createGameResult(board, reward, matchingResultList, bonusName);
+        GameResult gameResult = gameResultService.createGameResult(matrix, reward, matchingResultList, bonusName);
         gameResultService.generateOutput(gameResult);
     }
 }

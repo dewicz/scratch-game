@@ -1,17 +1,11 @@
 package service.game;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter.Indenter;
-import com.fasterxml.jackson.core.util.DefaultIndenter;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import model.game.Board;
+import model.game.Matrix;
 import model.game.GameResult;
 import model.matching.MatchingResult;
 import util.CustomPrettyPrinter;
-import util.PrintingHelper;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,14 +16,14 @@ import java.util.Map;
 
 public class GameResultService {
 
-    public GameResult createGameResult(Board board, double reward, List<MatchingResult> matchingResults, String bonus) {
+    public GameResult createGameResult(Matrix matrix, double reward, List<MatchingResult> matchingResults, String bonus) {
         Map<String, List<String>> resultMap = new HashMap<>();
         for(MatchingResult matchingResult : matchingResults) {
             List<String> list = resultMap.getOrDefault(matchingResult.getSymbol(), new ArrayList<>());
             list.add(matchingResult.getWinCombo());
             resultMap.put(matchingResult.getSymbol(), list);
         }
-        return new GameResult(PrintingHelper.convertMatrixToList(board.getBoard()), reward, resultMap, bonus);
+        return new GameResult(matrix.getBoard(), reward, resultMap, bonus);
     }
 
     public void generateOutput(GameResult gameResult) {

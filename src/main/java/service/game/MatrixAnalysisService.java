@@ -5,7 +5,7 @@ import model.config.Config;
 import model.config.fields.Symbol;
 import model.config.fields.WinCombination;
 import model.enums.SymbolType;
-import model.game.Board;
+import model.game.Matrix;
 import model.matching.MatchingResult;
 
 import java.util.ArrayList;
@@ -14,18 +14,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class BoardAnalysisService{
+public class MatrixAnalysisService {
     private final Config config;
     Map<String,List<WinCombination>> winCombos; //save winning symbols and win combinations associated with them
 
-    public BoardAnalysisService(Config config) {
+    public MatrixAnalysisService(Config config) {
         this.config = config;
         this.winCombos = new HashMap<>();
     }
 
-    public List<MatchingResult> analyzeBoard(Board board) {
+    public List<MatchingResult> analyzeBoard(Matrix matrix) {
         List<MatchingResult> matchingResults = new ArrayList<>();
-        matchingResults.addAll(new SameSymbolMatcher(config.getWinCombinations()).match(board.getBoard()));
+        matchingResults.addAll(new SameSymbolMatcher(config.getWinCombinations()).match(matrix.getBoard()));
         for(MatchingResult matchingResult : matchingResults) {
             List<WinCombination> list = winCombos.getOrDefault(matchingResult.getSymbol(), new ArrayList<>());
             list.add(config.getWinCombinations().get(matchingResult.getWinCombo()));
@@ -48,8 +48,8 @@ public class BoardAnalysisService{
         return reward;
     }
 
-    public String findBonus(Board board) {
-        String[][] b = board.getBoard();
+    public String findBonus(Matrix matrix) {
+        String[][] b = matrix.getBoard();
         String bonus = null;
         Map<String,Symbol> bonusSymbols = config.getSymbols().entrySet()
                 .stream()

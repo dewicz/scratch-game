@@ -2,32 +2,32 @@ package service.game;
 
 import model.config.Config;
 import model.config.fields.Probability;
-import model.game.Board;
+import model.game.Matrix;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class BoardCreationService {
+public class MatrixCreationService {
 
     private final Config config;
     private final Random random;
 
-    public BoardCreationService(Config config) {
+    public MatrixCreationService(Config config) {
         this.config = config;
         random = new Random();
     }
 
-    public Board initializeBoard(int rows, int columns) {
-        Board board = new Board(rows, columns);
+    public Matrix initializeBoard(int rows, int columns) {
+        Matrix matrix = new Matrix(rows, columns);
         Probability probabilities = config.getProbabilities();
         for(int i=0; i<rows; i++) {
             for(int j=0; j<columns; j++) {
-                board.getBoard()[i][j] = getSymbol(probabilities.retrieveCellAllocation(i,j).getSymbols());
+                matrix.getBoard()[i][j] = getSymbol(probabilities.retrieveCellAllocation(i,j).getSymbols());
             }
         }
-        addBonusSymbol(board);
-        return board;
+        addBonusSymbol(matrix);
+        return matrix;
     }
 
     public String getSymbol(Map<String, Integer> symbols) {
@@ -39,10 +39,10 @@ public class BoardCreationService {
      * Assumption: adding one bonus symbol per board, generated based on probabilities provided
      * and added by replacing one of the existing cells
      */
-    private void addBonusSymbol(Board board) {
-        int row = random.nextInt(board.getBoard().length);
-        int col = random.nextInt(board.getBoard()[0].length);
-        board.getBoard()[row][col] = generateBonusSymbol();
+    private void addBonusSymbol(Matrix matrix) {
+        int row = random.nextInt(matrix.getBoard().length);
+        int col = random.nextInt(matrix.getBoard()[0].length);
+        matrix.getBoard()[row][col] = generateBonusSymbol();
     }
 
     private String generateBonusSymbol() {

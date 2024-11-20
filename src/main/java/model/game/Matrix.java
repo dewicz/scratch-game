@@ -1,9 +1,9 @@
 package model.game;
 
-public class Board {
+public class Matrix {
     private String[][] board;
 
-    public Board(int rows, int columns) {
+    public Matrix(int rows, int columns) {
         this.board = new String[rows][columns];
     }
 

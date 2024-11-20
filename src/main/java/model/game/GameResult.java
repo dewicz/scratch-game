@@ -7,7 +7,8 @@ import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class GameResult {
-    private List<List<String>> matrix;
+    private String[][] matrix;
+    //i decided to use double despite the output file example using integer - since we have decimal multipliers, it's possible that the result will be decimal
     private Double reward;
     @JsonProperty("applied_winning_combinations")
     private Map<String, List<String>> winningCombinations;
@@ -15,18 +16,18 @@ public class GameResult {
     private String bonusSymbol;
 
 
-    public GameResult(List<List<String>> board, Double reward, Map<String, List<String>> winningCombinations, String bonusSymbol) {
-        this.matrix = board;
+    public GameResult(String[][] matrix, Double reward, Map<String, List<String>> winningCombinations, String bonusSymbol) {
+        this.matrix = matrix;
         this.reward = reward;
         this.winningCombinations = winningCombinations;
         this.bonusSymbol = bonusSymbol;
     }
 
-    public List<List<String>> getMatrix() {
+    public String[][] getMatrix() {
         return matrix;
     }
 
-    public void setMatrix(List<List<String>> board) {
+    public void setMatrix(String[][] board) {
         this.matrix = board;
     }
 
