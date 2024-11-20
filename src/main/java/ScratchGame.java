@@ -34,7 +34,7 @@ public class ScratchGame {
         BoardAnalysisService boardAnalysisService = new BoardAnalysisService(config);
         List<MatchingResult> matchingResultList = boardAnalysisService.analyzeBoard(board);
         double reward = boardAnalysisService.computeReward(runParams.getBettingAmount());
-        String bonusName = boardAnalysisService.findBonus(board);
+        String bonusName = reward == 0 ? "" : boardAnalysisService.findBonus(board);
         reward = boardAnalysisService.addBonus(reward, bonusName);
         System.out.println((int) reward);
         GameResultService gameResultService = new GameResultService();

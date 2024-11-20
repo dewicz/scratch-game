@@ -68,7 +68,7 @@ public class BoardAnalysisService{
 
     public double addBonus(double reward, String bonusName) {
         Symbol bonus = config.getSymbols().get(bonusName);
-        if(bonus == null) {
+        if(bonus == null || reward == 0) {
             System.out.println("No bonus applied");
             return reward;
         }

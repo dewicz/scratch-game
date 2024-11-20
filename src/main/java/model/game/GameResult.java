@@ -1,10 +1,11 @@
 package model.game;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.List;
 import java.util.Map;
 
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class GameResult {
     private List<List<String>> matrix;
     private Double reward;
