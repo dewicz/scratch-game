@@ -29,8 +29,9 @@ public class ScratchGame {
         Board board = boardCreationService.initializeBoard(3,3);
         PrintingHelper.printBoard(board);
         BoardAnalysisService boardAnalysisService = new BoardAnalysisService(config);
-        List<Result> resultList = boardAnalysisService.analyzeBoard(board);
+        boardAnalysisService.analyzeBoard(board);
         double reward = boardAnalysisService.computeReward(runParams.getBettingAmount());
-        System.out.println(reward);
+        reward = boardAnalysisService.addBonus(reward, board);
+        System.out.println((int) reward);
     }
 }
