@@ -1,10 +1,13 @@
 import model.config.Config;
+import model.config.fields.Symbol;
 import model.game.Board;
-import model.matching.Result;
+import model.game.GameResult;
+import model.matching.MatchingResult;
 import model.params.RunParams;
 import service.config.ConfigService;
 import service.game.BoardAnalysisService;
 import service.game.BoardCreationService;
+import service.game.GameResultService;
 import util.PrintingHelper;
 
 import java.io.IOException;
@@ -29,9 +32,13 @@ public class ScratchGame {
         Board board = boardCreationService.initializeBoard(3,3);
         PrintingHelper.printBoard(board);
         BoardAnalysisService boardAnalysisService = new BoardAnalysisService(config);
-        boardAnalysisService.analyzeBoard(board);
+        List<MatchingResult> matchingResultList = boardAnalysisService.analyzeBoard(board);
         double reward = boardAnalysisService.computeReward(runParams.getBettingAmount());
-        reward = boardAnalysisService.addBonus(reward, board);
+        String bonusName = boardAnalysisService.findBonus(board);
+        reward = boardAnalysisService.addBonus(reward, bonusName);
         System.out.println((int) reward);
+        GameResultService gameResultService = new GameResultService();
+        GameResult gameResult = gameResultService.createGameResult(board, reward, matchingResultList, bonusName);
+        gameResultService.generateOutput(gameResult);
     }
 }

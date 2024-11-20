@@ -6,7 +6,7 @@ import model.config.fields.Symbol;
 import model.config.fields.WinCombination;
 import model.enums.SymbolType;
 import model.game.Board;
-import model.matching.Result;
+import model.matching.MatchingResult;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,14 +23,15 @@ public class BoardAnalysisService{
         this.winCombos = new HashMap<>();
     }
 
-    public void analyzeBoard(Board board) {
-        List<Result> results = new ArrayList<>();
-        results.addAll(new SameSymbolMatcher(config.getWinCombinations()).match(board.getBoard()));
-        for(Result result : results) {
-            List<WinCombination> list = winCombos.getOrDefault(result.getSymbol(), new ArrayList<>());
-            list.add(config.getWinCombinations().get(result.getWinCombo()));
-            winCombos.put(result.getSymbol(), list);
+    public List<MatchingResult> analyzeBoard(Board board) {
+        List<MatchingResult> matchingResults = new ArrayList<>();
+        matchingResults.addAll(new SameSymbolMatcher(config.getWinCombinations()).match(board.getBoard()));
+        for(MatchingResult matchingResult : matchingResults) {
+            List<WinCombination> list = winCombos.getOrDefault(matchingResult.getSymbol(), new ArrayList<>());
+            list.add(config.getWinCombinations().get(matchingResult.getWinCombo()));
+            winCombos.put(matchingResult.getSymbol(), list);
         }
+        return matchingResults;
     }
 
     public double computeReward(int bettingAmount) {
@@ -47,9 +48,9 @@ public class BoardAnalysisService{
         return reward;
     }
 
-    public double addBonus(double reward, Board board) {
+    public String findBonus(Board board) {
         String[][] b = board.getBoard();
-        Symbol bonus = null;
+        String bonus = null;
         Map<String,Symbol> bonusSymbols = config.getSymbols().entrySet()
                 .stream()
                 .filter(s -> s.getValue().getType() == SymbolType.BONUS)
@@ -58,11 +59,15 @@ public class BoardAnalysisService{
         for(int i=0; i<b.length; i++) {
             for(int j=0; j<b[0].length; j++) {
                 if(bonusSymbols.containsKey(b[i][j])) {
-                    bonus = bonusSymbols.get(b[i][j]);
+                    bonus = b[i][j];
                 }
             }
         }
+        return bonus;
+    }
 
+    public double addBonus(double reward, String bonusName) {
+        Symbol bonus = config.getSymbols().get(bonusName);
         if(bonus == null) {
             System.out.println("No bonus applied");
             return reward;

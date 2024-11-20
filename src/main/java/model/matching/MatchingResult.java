@@ -2,13 +2,13 @@ package model.matching;
 
 import model.enums.SymbolGroup;
 
-public class Result {
+public class MatchingResult {
     private String symbol;
     private Double rewardMultiplier;
     private String winCombo;
     private SymbolGroup group;
 
-    public Result(String symbol, Double rewardMultiplier, String winCombo, SymbolGroup group) {
+    public MatchingResult(String symbol, Double rewardMultiplier, String winCombo, SymbolGroup group) {
         this.symbol = symbol;
         this.rewardMultiplier = rewardMultiplier;
         this.winCombo = winCombo;

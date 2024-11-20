@@ -2,6 +2,8 @@ package util;
 
 import model.game.Board;
 
+import java.util.List;
+
 public class PrintingHelper {
 
     public static void printBoard(Board board) {
@@ -12,5 +14,11 @@ public class PrintingHelper {
             }
             System.out.println();
         }
+    }
+
+    public static List<List<String>> convertMatrixToList(String[][] matrix) {
+        return java.util.Arrays.stream(matrix)
+                .map(java.util.Arrays::asList)
+                .toList();
     }
 }

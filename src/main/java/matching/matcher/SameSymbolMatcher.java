@@ -2,7 +2,7 @@ package matching.matcher;
 
 import model.config.fields.WinCombination;
 import model.enums.SymbolOccurrence;
-import model.matching.Result;
+import model.matching.MatchingResult;
 import model.matching.WinDetail;
 
 import java.util.ArrayList;
@@ -22,26 +22,26 @@ public class SameSymbolMatcher {
                 .forEach(e -> combinations.put(e.getValue().getCount(), new WinDetail(e.getKey(), e.getValue())));
     }
 
-    public List<Result> match(String[][] board) {
+    public List<MatchingResult> match(String[][] board) {
         for(String[] row : board) {
             for(String symbol : row) {
                 symbols.put(symbol, symbols.getOrDefault(symbol, 0) + 1);
             }
         }
 
-        List<Result> results = new ArrayList<>();
+        List<MatchingResult> matchingResults = new ArrayList<>();
         for (Map.Entry<String, Integer> e : symbols.entrySet()) {
             WinDetail winDetail = combinations.get(e.getValue());
             if (winDetail != null) {
-                Result res = new Result(
+                MatchingResult res = new MatchingResult(
                         e.getKey(),
                         winDetail.getWinCombination().getRewardMultiplier(),
                         winDetail.getDescription(),
                         winDetail.getWinCombination().getGroup()
                 );
-                results.add(res);
+                matchingResults.add(res);
             }
         }
-        return results;
+        return matchingResults;
     }
 }
