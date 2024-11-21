@@ -25,7 +25,7 @@ public class MatrixAnalysisService {
 
     public List<MatchingResult> analyzeBoard(Matrix matrix) {
         List<MatchingResult> matchingResults = new ArrayList<>();
-        matchingResults.addAll(new SameSymbolMatcher(config.getWinCombinations()).match(matrix.getBoard()));
+        matchingResults.addAll(new SameSymbolMatcher(config.getWinCombinations()).match(matrix.getMatrix()));
         for(MatchingResult matchingResult : matchingResults) {
             List<WinCombination> list = winCombos.getOrDefault(matchingResult.getSymbol(), new ArrayList<>());
             list.add(config.getWinCombinations().get(matchingResult.getWinCombo()));
@@ -49,7 +49,7 @@ public class MatrixAnalysisService {
     }
 
     public String findBonus(Matrix matrix) {
-        String[][] b = matrix.getBoard();
+        String[][] b = matrix.getMatrix();
         String bonus = null;
         Map<String,Symbol> bonusSymbols = config.getSymbols().entrySet()
                 .stream()

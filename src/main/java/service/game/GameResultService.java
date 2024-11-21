@@ -23,7 +23,7 @@ public class GameResultService {
             list.add(matchingResult.getWinCombo());
             resultMap.put(matchingResult.getSymbol(), list);
         }
-        return new GameResult(matrix.getBoard(), reward, resultMap, bonus);
+        return new GameResult(matrix.getMatrix(), reward, resultMap, bonus);
     }
 
     public void generateOutput(GameResult gameResult) {

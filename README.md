@@ -21,13 +21,13 @@ Bonus symbols are described the table below:
 
 
 | Symbol Name | Reward Multiplier |
-|-------------|-------------------|
-| A           | 50                |
-| B           | 25                |
-| C           | 10                |
-| D           | 5                 |
-| E           | 3                 |
-| F           | 1.5               |
+|-------------|-----------------|
+| A           | 5               |
+| B           | 3               |
+| C           | 2.5             |
+| D           | 2               |
+| E           | 1.2             |
+| F           | 1               |
 
 
 **Bonus Symbols**: Bonus symbols are only effective when there are at least one winning combinations matches with the generated matrix. 
@@ -289,9 +289,9 @@ Rewards breakdown:
 |-------------------------|-----------------------------------|
 | symbol_A                | bet_amount x5                     |
 | symbol_B                | bet_amount x3                     |
-| same_symbol_5_times     | (reward for a specific symbol) x2 //original value was 5 but doesn't match config file, assuming it's a typo |
+| same_symbol_5_times     | (reward for a specific symbol) x2 |
 | same_symbol_3_times     | (reward for a specific symbol) x1 |
-| same_symbols_vertically | (reward for a specific symbol) x5 //original value was 2 but doesn't match config file, assuming it's a typo |
+| same_symbols_vertically | (reward for a specific symbol) x5 |
 | +1000                   | add 1000 extra to final reward    |
 
 Calculations: (bet_amount x reward(symbol_A) x reward(same_symbol_5_times) x reward(same_symbols_vertically)) + (bet_amount x reward(symbol_B) x reward(same_symbol_3_times) x reward(same_symbols_vertically)) (+/x) reward(+1000) = (100 x5 x2 x5) + (100 x3 x1 x5) + 1000 = 5000 + 1500 + 1000 = 6600
@@ -329,3 +329,7 @@ Note: Please make sure there are no errors while building (all test cases should
 |----------------|----------------------------------------------------|
 | config         | config file which is described top of the document |
 | betting amount | betting amount                                     |
+
+
+### Note
+Some of the values in the original instruction were in consistent. This README has been adjusted to use correct values in examples it describes.

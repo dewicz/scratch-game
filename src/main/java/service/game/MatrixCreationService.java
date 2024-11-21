@@ -23,7 +23,7 @@ public class MatrixCreationService {
         Probability probabilities = config.getProbabilities();
         for(int i=0; i<rows; i++) {
             for(int j=0; j<columns; j++) {
-                matrix.getBoard()[i][j] = getSymbol(probabilities.retrieveCellAllocation(i,j).getSymbols());
+                matrix.getMatrix()[i][j] = getSymbol(probabilities.retrieveCellAllocation(i,j).getSymbols());
             }
         }
         addBonusSymbol(matrix);
@@ -40,9 +40,9 @@ public class MatrixCreationService {
      * and added by replacing one of the existing cells
      */
     private void addBonusSymbol(Matrix matrix) {
-        int row = random.nextInt(matrix.getBoard().length);
-        int col = random.nextInt(matrix.getBoard()[0].length);
-        matrix.getBoard()[row][col] = generateBonusSymbol();
+        int row = random.nextInt(matrix.getMatrix().length);
+        int col = random.nextInt(matrix.getMatrix()[0].length);
+        matrix.getMatrix()[row][col] = generateBonusSymbol();
     }
 
     private String generateBonusSymbol() {

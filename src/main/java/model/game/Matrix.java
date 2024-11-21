@@ -1,17 +1,17 @@
 package model.game;
 
 public class Matrix {
-    private String[][] board;
+    private String[][] matrix;
 
     public Matrix(int rows, int columns) {
-        this.board = new String[rows][columns];
+        this.matrix = new String[rows][columns];
     }
 
-    public String[][] getBoard() {
-        return board;
+    public String[][] getMatrix() {
+        return matrix;
     }
 
-    public void setBoard(String[][] board) {
-        this.board = board;
+    public void setMatrix(String[][] matrix) {
+        this.matrix = matrix;
     }
 }
