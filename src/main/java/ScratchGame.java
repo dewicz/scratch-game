@@ -9,7 +9,6 @@ import service.game.MatrixCreationService;
 import service.game.GameResultService;
 import util.PrintingHelper;
 
-import java.io.IOException;
 import java.util.List;
 
 public class ScratchGame {
@@ -23,11 +22,12 @@ public class ScratchGame {
         try {
             config = configService.populateConfig(runParams.getConfigPath());
         }
-        catch(IOException e) {
-            System.err.println(e.getMessage());
+        catch(Exception e) {
+            System.err.println("Parameters invalid, cannot create matrix");
+            System.exit(0);
         }
         MatrixCreationService matrixCreationService = new MatrixCreationService(config);
-        Matrix matrix = matrixCreationService.initializeBoard(3,3);
+        Matrix matrix = matrixCreationService.initializeBoard(4,4);
         PrintingHelper.printMatrix(matrix);
         MatrixAnalysisService matrixAnalysisService = new MatrixAnalysisService(config);
         List<MatchingResult> matchingResultList = matrixAnalysisService.analyzeBoard(matrix);

@@ -12,6 +12,17 @@ public class Symbol {
     private ImpactType impact;
     private int extra;
 
+    public Symbol(double rewardMultiplier, SymbolType type, ImpactType impact, int extra) {
+        this.rewardMultiplier = rewardMultiplier;
+        this.type = type;
+        this.impact = impact;
+        this.extra = extra;
+    }
+
+    public Symbol() {
+
+    }
+
     public double getRewardMultiplier() {
         return rewardMultiplier;
     }

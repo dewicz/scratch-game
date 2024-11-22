@@ -1,6 +1,16 @@
 # Home Assignment: Scratch Game #
 
+### Note
+Some of the values in the original instruction were in consistent. This README has been adjusted to use correct values in examples it describes.
+The implementation meets both standard and bonus requirements.
 
+To run the application, this is the suggested run setup. A config.json file is located in the root of the project.
+You can use that file or provide full path to another file.
+
+![img.png](img.png)
+
+
+The results json file is generated in the root of the project. There are also print statements in the console showing the results.
 ## Requirements ##
 
 - JDK >= 1.8
@@ -330,6 +340,3 @@ Note: Please make sure there are no errors while building (all test cases should
 | config         | config file which is described top of the document |
 | betting amount | betting amount                                     |
 
-
-### Note
-Some of the values in the original instruction were in consistent. This README has been adjusted to use correct values in examples it describes.

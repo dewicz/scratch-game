@@ -1,5 +1,6 @@
 package service.game;
 
+import matching.matcher.LinearMatcher;
 import matching.matcher.SameSymbolMatcher;
 import model.config.Config;
 import model.config.fields.Symbol;
@@ -26,6 +27,7 @@ public class MatrixAnalysisService {
     public List<MatchingResult> analyzeBoard(Matrix matrix) {
         List<MatchingResult> matchingResults = new ArrayList<>();
         matchingResults.addAll(new SameSymbolMatcher(config.getWinCombinations()).match(matrix.getMatrix()));
+        matchingResults.addAll(new LinearMatcher(config.getWinCombinations()).match(matrix.getMatrix()));
         for(MatchingResult matchingResult : matchingResults) {
             List<WinCombination> list = winCombos.getOrDefault(matchingResult.getSymbol(), new ArrayList<>());
             list.add(config.getWinCombinations().get(matchingResult.getWinCombo()));

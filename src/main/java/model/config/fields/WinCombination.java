@@ -15,6 +15,17 @@ public class WinCombination {
     @JsonProperty("covered_areas")
     List<List<Location>> coveredAreas;
 
+    public WinCombination() {
+
+    }
+
+    public WinCombination(double rewardMultiplier, SymbolOccurrence when, int count, SymbolGroup group, List<List<Location>> coveredAreas) {
+        this.rewardMultiplier = rewardMultiplier;
+        this.when = when;
+        this.count = count;
+        this.group = group;
+        this.coveredAreas = coveredAreas;
+    }
 
     public double getRewardMultiplier() {
         return rewardMultiplier;
