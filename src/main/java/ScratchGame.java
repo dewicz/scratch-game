@@ -27,7 +27,7 @@ public class ScratchGame {
             System.exit(0);
         }
         MatrixCreationService matrixCreationService = new MatrixCreationService(config);
-        Matrix matrix = matrixCreationService.initializeBoard(4,4);
+        Matrix matrix = matrixCreationService.initializeBoard(config.getRows(),config.getColumns());
         PrintingHelper.printMatrix(matrix);
         MatrixAnalysisService matrixAnalysisService = new MatrixAnalysisService(config);
         List<MatchingResult> matchingResultList = matrixAnalysisService.analyzeBoard(matrix);
